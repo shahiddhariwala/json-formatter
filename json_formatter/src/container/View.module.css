@@ -1,0 +1,29 @@
+.PaperStyle
+{
+    text-align: center;
+    background-color: aliceblue;
+    width: 400px;
+    height:600px;
+    margin: 10px;
+
+}
+.GridRoot
+{
+    width: 100%;
+    height: 100%;
+}
+.GridRoot1
+{
+    width: 400px;
+    height: 50%;
+}
+.GridRoot2
+{
+    width: 40%;
+    height: 50%;
+}
+.GridRoot3
+{
+    width: 40%;
+    height: 50%;
+}
