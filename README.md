@@ -1,6 +1,4 @@
-# pg-challenege-json-formatter
-
-# pg-challenege-json-formatter
+# JSON Formatter
 
 ## Sucess
 ![Success Pic](https://github.com/shahiddhariwala/pg-challenege-json-formatter/blob/master/json_formatter/src/assets/jsonFormatSuccess.png)
@@ -21,13 +19,16 @@
 ## Example
 
 ### RAW JSON
-=> 
+```
 {
     "fruit": "Apple", "size": "Large","color": "Red"
 }
+```
 ### Formatted JSON
+```
 {
   "fruit": "Apple",
   "size": "Large",
   "color": "Red"
 }
+```
