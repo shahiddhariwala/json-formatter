@@ -18,9 +18,7 @@ const View = () => {
 
     const onChangeHandler = (e) => {
         e.persist();
-        if (e.target && e.target.value) {
             setRawData(jsonRawData => e.target.value);
-        }
 
 
     }
