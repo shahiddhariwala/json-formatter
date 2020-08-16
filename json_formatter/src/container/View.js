@@ -3,25 +3,23 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import styles from "./View.module.css";
 import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Button } from '@material-ui/core';
-// import JSONPretty from 'react-json-prettify';
 import JSONDisplayer from "../component/JsonDiplay";
-// import {github} from 'react-json-prettify/themes';
-import JSONPretty from 'react-json-pretty';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const View = () => {
 
     const [jsonRawData, setRawData] = useState();
+    const [showJson,setShowJson] = useState(false);
 
     const onChangeHandler = (e) => {
         e.persist();
-            setRawData(jsonRawData => e.target.value);
+        setRawData(jsonRawData => e.target.value);
 
 
     }
+
     const checkJSON = () => {
         if (jsonRawData) {
             try {
@@ -35,6 +33,7 @@ const View = () => {
                     draggable: true,
                     progress: undefined,
                 });
+                setShowJson(showJson=>true);
             }
             catch (e) {
                 toast.error("Error !", {
@@ -46,6 +45,7 @@ const View = () => {
                     draggable: true,
                     progress: undefined,
                 });
+                setShowJson(showJson=>false);
             }
         }
         else {
@@ -58,6 +58,7 @@ const View = () => {
                 draggable: true,
                 progress: undefined,
             });
+            setShowJson(showJson=>false);
         }
     }
     return (
@@ -86,16 +87,13 @@ const View = () => {
                 <Grid item xs={2} spacing={1} className={styles.GridRoot2}>
                     <Paper className={styles.PaperStyle2} style={{ textAlign: "center", justifyContent: "center" }}>
                         <Button variant="contained" color="primary" style={{ textAlign: "center", justifyContent: "center", marginTop: "150%" }} onClick={checkJSON}>
-                            Check Error
+                            Pretty JSON
                             </Button>
                     </Paper>
                 </Grid>
                 <Grid item xs={5} spacing={1} className={styles.GridRoot3} style={{ textAlign: "left" }}>
                     <Paper className={styles.PaperStyle3} ><span >Formatted JSON</span>
-                        {/* {jsonRawData ? <JSONDisplayer>{jsonRawData}</JSONDisplayer> : null }
-                    <div><pre>{ JSON.stringify(jsonRawData, null, 2) }</pre></div>
-                    <JSONPretty json={jsonRawData} theme={github} padding={4} /> */}
-                        <JSONPretty id="json-pretty" data={jsonRawData} ></JSONPretty>
+                        {showJson ? <JSONDisplayer>{JSON.parse(jsonRawData)}</JSONDisplayer> : null }
                     </Paper>
                 </Grid>
             </Grid>
@@ -108,3 +106,23 @@ const View = () => {
 }
 
 export default View;
+
+
+/* Raw JSON Data
+
+{"data":[{"stuff":[
+    {"onetype":[
+        {"id":1,"name":"John Doe"},
+        {"id":2,"name":"Don Joeh"}
+    ]},
+    {"othertype":[
+        {"id":2,"company":"ACME"}
+    ]}]
+},{"otherstuff":[
+    {"thing":
+        [[1,42],[2,2]]
+    }]
+}]}
+
+
+*/
